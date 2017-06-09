@@ -21,7 +21,7 @@ AC_DISABLE_SHARED
 LT_INIT([dlopen])
 
 dnl Check for pcre library
-TS_ADDTO(CFLAGS, [-I${ac_abs_top_builddir}/pcre])
+TS_ADDTO(CFLAGS, [-Ipcre])
 TS_ADDTO(CFLAGS, [-DPCRE_STATIC])
 AC_CHECK_HEADERS(pcre.h, [])
 AC_CHECK_HEADERS(pcre/pcre.h, [])
