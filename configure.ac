@@ -21,10 +21,10 @@ AC_DISABLE_SHARED
 LT_INIT([dlopen])
 
 dnl Check for pcre library
-TS_CHECK_PCRE
-if test "x${enable_pcre}" != "xyes"; then
-  AC_MSG_ERROR([Cannot find pcre library. Configure --with-pcre=DIR])
-fi
+TS_ADDTO(CFLAGS, [-Ipcre])
+TS_ADDTO(CFLAGS, [-DPCRE_STATIC])
+AC_CHECK_HEADERS(pcre.h, [])
+AC_CHECK_HEADERS(pcre/pcre.h, [])
 
 dnl Checks for using shared libraries from system
 AC_ARG_ENABLE(
@@ -79,8 +79,6 @@ dnl Checks for TLS
 AX_TLS([:], [:])
 
 dnl Checks for crypto libraries
-ss_MBEDTLS
-ss_SODIUM
 
 dnl Checks for inet_ntop
 ss_FUNC_INET_NTOP
@@ -218,12 +216,6 @@ AC_CHECK_LIB(socket, connect)
 dnl Checks for library functions.
 AC_CHECK_FUNCS([malloc memset posix_memalign socket])
 
-dnl Add define for libudns to enable IPv6 support
-dnl This is an option defined in the origin configure script
-AC_DEFINE([HAVE_IPv6], [1], [Enable IPv6 support in libudns])
-
-AC_CHECK_HEADERS([udns.h], [], [AC_MSG_ERROR([Couldn't find libudns. Try installing libudns-dev or udns-devel.])])
-AC_CHECK_LIB([udns], [dns_dnlen], [LIBS="-ludns $LIBS"], [AC_MSG_ERROR([Couldn't find libudns. Try installing libudns-dev or udns-devel.])])
 
 AC_CHECK_HEADERS([ev.h libev/ev.h], [], [])
 AC_CHECK_LIB([ev], [ev_loop_destroy], [LIBS="-lev $LIBS"], [AC_MSG_ERROR([Couldn't find libev. Try installing libev-dev@<:@el@:>@.])])
@@ -231,6 +223,8 @@ AC_CHECK_LIB([ev], [ev_loop_destroy], [LIBS="-lev $LIBS"], [AC_MSG_ERROR([Couldn
 AC_CONFIG_FILES([shadowsocks-libev.pc
                  Makefile
                  src/Makefile])
+
+AC_CONFIG_SUBDIRS([pcre libev libudns libsodium])
 
 AM_COND_IF([USE_SYSTEM_SHARED_LIB],
 		   [AC_DEFINE([USE_SYSTEM_SHARED_LIB], [1], [Define if use system shared lib.])],
