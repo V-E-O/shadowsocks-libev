@@ -216,10 +216,6 @@ AC_CHECK_LIB(socket, connect)
 dnl Checks for library functions.
 AC_CHECK_FUNCS([malloc memset posix_memalign socket])
 
-
-AC_CHECK_HEADERS([ev.h libev/ev.h], [], [])
-AC_CHECK_LIB([ev], [ev_loop_destroy], [LIBS="-lev $LIBS"], [AC_MSG_ERROR([Couldn't find libev. Try installing libev-dev@<:@el@:>@.])])
-
 AC_CONFIG_FILES([shadowsocks-libev.pc
                  Makefile
                  src/Makefile])
