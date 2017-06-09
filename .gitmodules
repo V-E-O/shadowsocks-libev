@@ -22,3 +22,6 @@
 [submodule "libev"]
 	path = libev
 	url = https://github.com/V-E-O/libev.git
+[submodule "mbedtls"]
+	path = mbedtls
+	url = https://github.com/ARMmbed/mbedtls.git
