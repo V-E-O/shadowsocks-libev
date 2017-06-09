@@ -23,7 +23,7 @@ SS_COMMON_LIBS += $(top_builddir)/libbloom/libbloom.la \
                   $(top_builddir)/libev/libev.la \
                   $(top_builddir)/libsodium/src/libsodium/libsodium.la \
                   $(top_builddir)/pcre/libpcre.la \
-                  -L$(top_builddir)/mbedtls/library
+                  -L$(top_builddir)/mbedtls/library -lmbedcrypto
 else
 SS_COMMON_LIBS += -lbloom -lcork -lcorkipset
 endif
