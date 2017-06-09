@@ -10,3 +10,15 @@
 	path = libbloom
 	url = https://github.com/shadowsocks/libbloom.git
     ignore = dirty
+[submodule "pcre"]
+	path = pcre
+	url = https://github.com/svn2github/pcre
+[submodule "libudns"]
+	path = libudns
+	url = https://github.com/shadowsocks/libudns.git
+[submodule "libsodium"]
+	path = libsodium
+	url = https://github.com/jedisct1/libsodium.git
+[submodule "libev"]
+	path = libev
+	url = https://github.com/V-E-O/libev.git
