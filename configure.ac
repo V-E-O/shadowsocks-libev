@@ -21,7 +21,10 @@ AC_DISABLE_SHARED
 LT_INIT([dlopen])
 
 dnl Check for pcre library
-AC_DEFINE_UNQUOTED(HAVE_PCRE_H)
+TS_CHECK_PCRE
+if test "x${enable_pcre}" != "xyes"; then
+  AC_MSG_ERROR([Cannot find pcre library. Configure --with-pcre=DIR])
+fi
 
 dnl Checks for using shared libraries from system
 AC_ARG_ENABLE(
@@ -217,7 +220,7 @@ AC_CONFIG_FILES([shadowsocks-libev.pc
                  Makefile
                  src/Makefile])
 
-AC_CONFIG_SUBDIRS([pcre libev libudns libsodium])
+AC_CONFIG_SUBDIRS([libev libudns libsodium])
 
 AM_COND_IF([USE_SYSTEM_SHARED_LIB],
 		   [AC_DEFINE([USE_SYSTEM_SHARED_LIB], [1], [Define if use system shared lib.])],

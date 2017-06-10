@@ -9,7 +9,6 @@ AM_CFLAGS += -I$(top_srcdir)/libcork/include
 AM_CFLAGS += -I$(top_srcdir)/libudns
 AM_CFLAGS += -I$(top_srcdir)/libev
 AM_CFLAGS += -I$(top_srcdir)/libsodium/src/libsodium/include
-AM_CFLAGS += -I$(top_srcdir)/pcre
 AM_CFLAGS += -I$(top_srcdir)/mbedtls/include
 endif
 AM_CFLAGS += $(LIBPCRE_CFLAGS)
@@ -22,7 +21,6 @@ SS_COMMON_LIBS += $(top_builddir)/libbloom/libbloom.la \
                   $(top_builddir)/libudns/libudns.la \
                   $(top_builddir)/libev/libev.la \
                   $(top_builddir)/libsodium/src/libsodium/libsodium.la \
-                  $(top_builddir)/pcre/libpcre.la \
                   -L$(top_builddir)/mbedtls/library -lmbedcrypto
 else
 SS_COMMON_LIBS += -lbloom -lcork -lcorkipset
