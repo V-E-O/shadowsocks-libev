@@ -21,9 +21,7 @@ AC_DISABLE_SHARED
 LT_INIT([dlopen])
 
 dnl Check for pcre library
-TS_ADDTO(CFLAGS, [-Ipcre])
-TS_ADDTO(CFLAGS, [-DPCRE_STATIC])
-AC_CHECK_HEADERS(pcre.h, [])
+AC_DEFINE_UNQUOTED(HAVE_PCRE_H)
 
 dnl Checks for using shared libraries from system
 AC_ARG_ENABLE(
