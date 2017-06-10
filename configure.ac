@@ -215,12 +215,11 @@ AC_CHECK_LIB(socket, connect)
 dnl Checks for library functions.
 AC_CHECK_FUNCS([malloc memset posix_memalign socket])
 
-# config dependency first!!
-AC_CONFIG_SUBDIRS([pcre libev libudns libsodium])
-
 AC_CONFIG_FILES([shadowsocks-libev.pc
                  Makefile
                  src/Makefile])
+
+AC_CONFIG_SUBDIRS([pcre libev libudns libsodium])
 
 AM_COND_IF([USE_SYSTEM_SHARED_LIB],
 		   [AC_DEFINE([USE_SYSTEM_SHARED_LIB], [1], [Define if use system shared lib.])],
